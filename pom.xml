@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.esed.easybridge.core</groupId>
   <artifactId>com.esed.easybridge.core</artifactId>
-  <version>1.0</version>
+  <version>1.1.0</version>
   <name>com.esed.easybridge.core</name>
   <description>com.esed.easybridge.core</description>
  <parent>
       <groupId>it.maggioli.informatica.base.pom</groupId>
       <artifactId>pagonet-base</artifactId>
-      <version>1.1</version>
+      <version>1.2.0</version>
       <relativePath/>
    </parent>
 
@@ -29,11 +29,12 @@
   </build>
   <dependencies>
   
-  <dependency>
-  <groupId>com.seda.data</groupId>
-  <artifactId>com.seda.data</artifactId>
-  <version>1.0</version>
-</dependency>
+		<dependency>
+			<groupId>com.seda.payer.core</groupId>
+			<artifactId>com.seda.payer.core</artifactId>
+			<version>2.10.0</version>
+			<scope>compile</scope>
+		</dependency>
 
   </dependencies>
 </project>
