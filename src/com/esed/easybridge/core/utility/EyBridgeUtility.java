@@ -16,7 +16,6 @@ public class EyBridgeUtility {
  		dsProperties.put(DAOHelper.JDBC_URL, url.trim());
  		dsProperties.put(DAOHelper.JDBC_USER,username.trim());
  		dsProperties.put(DAOHelper.JDBC_PASSWORD, password.trim());
- 		//TODO: verificare se funziona il set della properties autocommit  
  		if(autocommit.equalsIgnoreCase("false")) {
  			dsProperties.put("autocommit", false);
  		}

@@ -5,17 +5,18 @@ import java.util.*;
 
 import com.esed.easybridge.core.model.*;
 import com.seda.data.dao.DAOHelper;
-import com.seda.data.helper.Helper;
 import com.seda.data.helper.HelperException;
+import com.seda.payer.core.handler.BaseDaoHandler;
 
-public class EyBridgeDao {
-
-	Connection connection;
-	String schema;
+//inizio LP 20240826 - PGNTEASYBC-1
+//public class EyBridgeDao {
+//	Connection connection;
+//	String schema;
+//
+public class EyBridgeDao extends BaseDaoHandler {
 	
 	protected CallableStatement callableStatementInsertCuteCute = null;
 	protected CallableStatement callableStatementSelectCuteCute = null;
-	
 	protected CallableStatement callableStatementInsertRegistroIdSession = null;
 	protected CallableStatement callableStatementSelectRegistroIdSession = null;
 
@@ -30,13 +31,19 @@ public class EyBridgeDao {
 	}
 
 	public EyBridgeDao(Connection connection, String schema){
-		this.connection = connection;
-		this.schema = schema;
+		//inizio LP 20240826 - PGNTEASYBC-1
+		//this.connection = connection;
+		//this.schema = schema;
+		super(connection, schema);
+		//fine LP 20240826 - PGNTEASYBC-1
 	}
 
 	//inizio LP 20190611 BUG connection open
 	public void CloseConnection(){
 		try {
+			//inizio LP 20240826 - PGNTEASYBC-1
+			Connection connection = getConnection(); 
+			//fine LP 20240826 - PGNTEASYBC-1
 			if (connection != null && !connection.isClosed()) { 
 				connection.close();
 			}
@@ -50,7 +57,10 @@ public class EyBridgeDao {
 	{
 		try {
 			if (callableStatementSelectCuteCute == null) {
-				callableStatementSelectCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_SEL");
+				//inizio LP 20240826 - PGNTEASYBC-1
+				//callableStatementSelectCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_SEL");
+				callableStatementSelectCuteCute = prepareCall("EYCFGTB_SEL");
+				//fine LP 20240826 - PGNTEASYBC-1
 			}
 		} catch (Exception e){
 			System.out.println("EyBridge::testConnection failed!");
@@ -74,7 +84,10 @@ public class EyBridgeDao {
 		try
 		{	
 			if (callableStatementInsertCuteCute == null) {
-				callableStatementInsertCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_INS");
+				//inizio LP 20240826 - PGNTEASYBC-1
+				//callableStatementInsertCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_INS");
+				callableStatementInsertCuteCute = prepareCall("EYCFGTB_INS");
+				//fine LP 20240826 - PGNTEASYBC-1
 			}
 		    int i = 0;
 		    
@@ -113,7 +126,10 @@ public class EyBridgeDao {
 	public CuteCute selectCuteCute(String cuteCute) throws Exception
 	{
 		if (callableStatementSelectCuteCute == null) {
-			callableStatementSelectCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_SEL");
+			//inizio LP 20240826 - PGNTEASYBC-1
+			//callableStatementSelectCuteCute = Helper.prepareCall(connection, schema, "EYCFGTB_SEL");
+			callableStatementSelectCuteCute = prepareCall("EYCFGTB_SEL");
+			//fine LP 20240826 - PGNTEASYBC-1
 		}
 		ResultSet data = null;
 		try	{
@@ -159,7 +175,10 @@ public class EyBridgeDao {
 		try
 		{	
 			if (callableStatementInsertRegistroIdSession == null) {
-				callableStatementInsertRegistroIdSession = Helper.prepareCall(connection, schema, "EYRPTTB_INS");
+				//inizio LP 20240826 - PGNTEASYBC-1
+				//callableStatementInsertRegistroIdSession = Helper.prepareCall(connection, schema, "EYRPTTB_INS");
+				callableStatementInsertRegistroIdSession = prepareCall("EYRPTTB_INS");
+				//fine LP 20240826 - PGNTEASYBC-1
 			}
 		    int i = 0;
 		    callableStatementInsertRegistroIdSession.setLong(++i, bean.getIdRegistrazione());
@@ -194,7 +213,10 @@ public class EyBridgeDao {
 	public RegistroIdSession selectRegistroIdSession(String idSessione) throws Exception
 	{
 		if (callableStatementSelectRegistroIdSession == null) {
-			callableStatementSelectRegistroIdSession = Helper.prepareCall(connection, schema, "EYRPTTB_SEL_SES");
+			//inizio LP 20240826 - PGNTEASYBC-1
+			//callableStatementSelectRegistroIdSession = Helper.prepareCall(connection, schema, "EYRPTTB_SEL_SES");
+			callableStatementSelectRegistroIdSession = prepareCall("EYRPTTB_SEL_SES");
+			//fine LP 20240826 - PGNTEASYBC-1
 		}
 		ResultSet data = null;
 		try	{
@@ -234,5 +256,5 @@ public class EyBridgeDao {
 			//fine LP PG21XX04 Leak
 		}
 	}
-	
+
 }
