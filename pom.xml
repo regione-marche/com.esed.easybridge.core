@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.esed.easybridge.core</groupId>
   <artifactId>com.esed.easybridge.core</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <name>com.esed.easybridge.core</name>
   <description>com.esed.easybridge.core</description>
  <parent>
       <groupId>it.maggioli.informatica.base.pom</groupId>
       <artifactId>pagonet-base</artifactId>
-      <version>1.4.0</version> <!-- LP 20240826 - PGNTEASYBC-1 -->
+      <version>1.5.0</version> <!-- LP 20240826 - PGNTEASYBC-1 -->
       <relativePath/>
    </parent>
 
